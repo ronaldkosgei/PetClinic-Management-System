@@ -28,9 +28,6 @@ public class Vet {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "id_number", nullable = false,unique = true)
     private int idNumber;
 

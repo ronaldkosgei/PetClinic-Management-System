@@ -26,9 +26,6 @@ public class VetDto {
     @NotEmpty
     private String lastName;
 
-    @NotEmpty
-    private String name;
-
     private int idNumber;
 
     @NotEmpty(message = "The Email Address should not be empty")

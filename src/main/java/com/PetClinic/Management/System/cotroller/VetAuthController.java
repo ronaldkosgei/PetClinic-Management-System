@@ -30,7 +30,12 @@ public class VetAuthController {
 
     @PostMapping("/login")
     public String login(){
-        return "login";
+        return "login_petOwner";
+    }
+
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login_vet";
     }
 
     @GetMapping("/register/vet")

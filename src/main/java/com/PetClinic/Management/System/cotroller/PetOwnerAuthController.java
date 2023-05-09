@@ -27,9 +27,14 @@ public class PetOwnerAuthController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login_petOwner";
+    }
+
     @PostMapping("/login")
     public String login(){
-        return "login";
+        return "index";
     }
 
     @GetMapping("/register/petOwner")

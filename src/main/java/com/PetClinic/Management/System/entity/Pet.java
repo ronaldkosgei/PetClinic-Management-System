@@ -22,8 +22,8 @@ public class Pet {
     @Column(name = "pet_name")
     private String petName;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "age")
+    private int age;
 
     @Column(name = "id_tag")
     private String idTag;

@@ -1,6 +1,7 @@
 package com.PetClinic.Management.System.dto;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,8 +24,7 @@ public class PetDto {
     @NotEmpty(message = "The Pet name should not be Empty!")
     private String petName;
 
-    @NotEmpty
-    private  String name;
+    private int age;
 
     @NotEmpty(message = "The Id tag should not be Empty!")
     private String idTag;

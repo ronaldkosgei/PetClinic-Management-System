@@ -4,17 +4,16 @@ import com.PetClinic.Management.System.dto.PetDto;
 import com.PetClinic.Management.System.entity.Pet;
 import com.PetClinic.Management.System.service.PetService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController
+@Controller
 @RequestMapping("pet")
 public class PetAuthController {
 
-    @Autowired
     private final PetService petService;
 
     public PetAuthController(PetService petService){
@@ -28,21 +27,24 @@ public class PetAuthController {
     }
 
     @GetMapping("/register/pet")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForms(Model model) {
         PetDto pet = new PetDto();
-        return "register";
+        model.addAttribute("pet",pet);
+        return "register_pet";
     }
 
     @PostMapping("/register/pet/save")
-    public void registration(@Valid @ModelAttribute("pet") PetDto petDto,
-                             BindingResult result,
-                             Model model) {
-        Pet existingPet = petService.findPetsByPetName(petDto.getPetName());
+    public String registration(@Valid @ModelAttribute("pet") PetDto petDto,
+                               BindingResult result,
+                               Model model) {
+        Pet existingPetByIdTag = petService.findByIdTag(petDto.getIdTag());
 
-        if (existingPet != null && existingPet.getPetName() != null &&
-                !existingPet.getPetName().isEmpty()) {
-            result.rejectValue("email", null,
-                    "There is already an account registered with the same email");
+        if(existingPetByIdTag != null ){
+            result.rejectValue("idTag", null,
+                    "There is a Pet registered with the same idTag");
         }
+
+        petService.savePet(petDto);
+        return "redirect:/pet/register/pet";
     }
 }

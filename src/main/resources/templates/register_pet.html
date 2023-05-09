@@ -37,7 +37,7 @@
                 <form
                         method="post"
                         role="form"
-                        th:action="@{/register/pet/save}"
+                        th:action="@{/pet/register/pet/save}"
                         th:object="${pet}"
                 >
                     <div class="form-group mb-3">
@@ -47,7 +47,7 @@
                                 id="idTag"
                                 name="idTag"
                                 placeholder="Enter Id Tag"
-                                th:field="*{idtag}"
+                                th:field="*{idTag}"
                                 type="text"
                         />
                         <p th:errors = "*{idTag}" class="text-danger"
